@@ -2,9 +2,280 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой первый сайт</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YEREPHACK — Приватный чит для StandLeo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --panel-color: #1f2833;
+            --accent-color: #e50914;
+            --accent-hover: #b20710;
+            --text-main: #ffffff;
+            --text-muted: #8a929a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Навигация в стиле XONE */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 12, 16, 0.95);
+            border-bottom: 2px solid var(--accent-color);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-join {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #990000 100%);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+        }
+
+        .btn-join:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.7);
+        }
+
+        /* Главный экран (Hero) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(229, 9, 20, 0.15) 0%, rgba(11, 12, 16, 1) 70%);
+            padding-top: 80px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero .btn-join {
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+
+        /* Секция функционала */
+        .features {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            font-weight: 800;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #12141c 0%, #090a0e 100%);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--accent-color);
+            padding: 40px 30px;
+            border-radius: 4px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(145deg, #181b26 0%, #0d0f14 100%);
+            border-color: rgba(229, 9, 20, 0.5);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Футер */
+        footer {
+            background: #060709;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Привет, мир! Мой сайт на GitHub работает.</h1>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="var(--accent-color)" stroke="#000" stroke-width="12" stroke-linejoin="round" d="M373.1 161.4c-17.5-23.7-41.5-42.3-69.6-53.7-18.7-7.6-38.6-11.8-59.2-12.2v39.5c11.5.3 22.7 2.6 33.2 6.8 19.3 7.8 35.8 20.6 47.9 36.9l47.7-17.3zM203.4 126.7c15-3.3 30.6-5 46.6-5.2V82c-23.7.2-46.8 2.8-68.9 7.7l22.3 37zM148.6 155.8c11.1-9.9 23.8-18.1 37.7-24.4l-22.3-37c-20.7 9.4-39.6 21.6-56.2 36.4l20.8 45zM114.7 203.6c6.2-13.6 14.2-26.1 23.8-37.1l-20.8-45c-14.4 16.4-26.4 35-35.6 55.2l32.6 26.9zM100.9 261c2-14.8 5.9-29.1 11.6-42.6l-32.6-26.9c-8.6 20.2-14.5 41.7-17.4 64h38.4zM106.3 318c-3.1-14.6-4.7-29.7-4.7-45.2h-38.4c0 23.1 2.4 45.6 7 67.2l36.1-22zM128.4 370c-7.3-11.8-13.1-24.7-17.3-38.3l-36.1 22c6.2 20.3 15 39.4 25.9 56.9l27.5-40.6zM169.5 411.3c-10.7-8.5-20.1-18.4-28-29.5l-27.5 40.6c11.8 16.5 25.8 31.2 41.8 43.8l13.7-44.9zM224 437.4c-13.3-3.6-25.9-9.1-37.3-16.3l-13.7 44.9c17 10.7 35.7 18.9 55.6 24.2l-4.6-52.8zM244.2 438.4V492c10.4.3 20.9.4 31.4.1l-4.6-53.7h-26.8zM315.6 423.8c-11.7 6.6-24.4 11.5-37.7 14.5h26.8l20-50.1c-3.1.2-6.2.3-9.1.3l-.2-15.3-25.1 1.4c-.1 6.8-1.5 13.5-4.2 19.6l19.5 29.6zM366.1 391.2c-15.3 13-33.4 22.8-53.2 28.5l-19.5-29.6c11.9-3.4 22.7-9.3 31.9-17.1l40.8 18.2zM399.7 343.3c-10 17.1-23.3 31.7-39.2 43l-40.8-18.2c9.5-6.8 17.5-15.5 23.5-25.7l56.5.9zM415 285.5c-4 19.5-12 37.5-23.4 53.2l-56.5-.9c6.8-9.4 11.6-20.1 14-31.5l65.9-20.8z"/>
+                    <path fill="var(--accent-color)" stroke="#000" stroke-width="12" stroke-linejoin="round" d="M141.5 241.5h154.2l39-30H141.5z"/>
+                </svg>
+                YEREPHACK
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#features">Функции</a></li>
+                <li><a href="https://t.me/yerephack" target="_blank">Telegram</a></li>
+            </ul>
+            <a href="https://t.me/yerephack" class="btn-join" target="_blank">Join</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1><span>YEREPHACK</span> FOR STANDLEO</h1>
+            <p>Доминируй в любимом приватном сервере с самым стабильным и функциональным софтом. Получи полный контроль над игрой прямо сейчас совершенно бесплатно.</p>
+            <a href="https://t.me/yerephack" class="btn-join" target="_blank">Join Channel</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-title">Преимущества <span>Нашего Софта</span></div>
+        <div class="features-grid">
+            
+            <div class="feature-card">
+                <h3>Nametags</h3>
+                <p>Полный контроль карты. Визуальное отображение никнеймов, линий (Snaplines), скелетов, хитбоксов и дистанции до противников через любые препятствия в реальном времени.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Hitbox</h3>
+                <p>Идеальная точность при стрельбе. Настраиваемое увеличение и фиксация хитбоксов моделей врагов, позволяющая попадать точно в цель без сложных манипуляций с доводкой.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 YEREPHACK. Все права защищены. Разработано для сообщества StandLeo.</p>
+        <p style="margin-top: 10px;">Официальный ресурс: <a href="https://t.me/yerephack" target="_blank">t.me/yerephack</a></p>
+    </footer>
+
 </body>
 </html>
